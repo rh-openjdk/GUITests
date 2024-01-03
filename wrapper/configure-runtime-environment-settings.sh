@@ -13,7 +13,7 @@ export SCRATCH_DISK=$(mktemp -d)
 
 # configure paths
 export TESTS_FOLDER="`dirname ${SCRIPT_DIR}`/tests"
-export BINARY_FOLDER='/home/rcap/tmp/rpms'
+#export BINARY_FOLDER='/home/rcap/tmp/rpms'
 }
 
 function configureDefaultSettings {
