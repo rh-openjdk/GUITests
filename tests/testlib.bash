@@ -222,7 +222,7 @@ function resolveBg() {
   ps | grep "$pid" # to die if process do nto start
   # shellcheck disable=SC2166
   if [ "x$TTL" = "x" -o "x$TTL" = "x0"  ] ; then
-    wait "$pid"
+    wait -t 60 "$pid"
   else
     sleep "$TTL"
     import  -window root "$REPORT_DIR"/$cname-02.png
