@@ -41,6 +41,7 @@ jobs:
         run: |
           cd wrapper
           export BINARY_FOLDER=/usr/bin/java
+          export TTL=60
           ./run.sh
           
 
