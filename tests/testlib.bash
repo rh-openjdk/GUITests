@@ -198,6 +198,10 @@ function installVnc() {
   LOCAL_VNC_PASS=$PWD/$LOCAL_VNC_VERSION/usr/bin/vncpasswd
 }
 
+function cleanUpJavaToolOptions() {
+  export JAVA_TOOL_OPTIONS="$(echo $JAVA_TOOL_OPTIONS | sed 's/-Djava.security.manager=[a-zA-Z0-9]\+/ /')"
+}
+
 # shellcheck disable=SC2166
 if [ "x$TTL" = "x" -o "x$TTL" = "x0"  ] ; then
   ITW_HEADLESS=
@@ -548,6 +552,7 @@ function installJMC_archive() {
 }
 
 function runJmcFromDir() {
+    cleanUpJavaToolOptions
     beforeBg jmcFromDir
     bgWithLog $JMC_DIR/bin/jmc  -vm  "$JAVA_DIR"/bin/java
     resolveBg "$PID" jmcFromDir
@@ -730,6 +735,7 @@ function installEclipse_archive() {
 
 
 function runEclipse_archive() {
+  cleanUpJavaToolOptions
   if [ "x$OTOOL_OS_NAME" = "xwin" ] ; then
    local suffix=".exe"
   else
