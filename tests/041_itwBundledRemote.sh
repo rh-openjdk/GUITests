@@ -19,6 +19,10 @@ if ! isRedHatDistro ; then
   echo "$SKIPPED_no_RH"
   exit 0
 fi
+if isItwRemoteDisabled ; then
+  echo "$SKIPPED_no_ITWREMOTE"
+  exit 0
+fi
 
 parseArguments "$@"
 processArguments
