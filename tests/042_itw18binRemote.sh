@@ -15,6 +15,11 @@ readonly SCRIPT_DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" && pwd )"
 
 source "$SCRIPT_DIR/testlib.bash"
 
+if isItwRemoteDisabled ; then
+  echo "$SKIPPED_no_ITWREMOTE"
+  exit 0
+fi
+
 parseArguments "$@"
 processArguments
 setup
