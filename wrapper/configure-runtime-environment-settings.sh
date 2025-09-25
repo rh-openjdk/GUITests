@@ -7,8 +7,8 @@ function setupRuntimeSpecifics() {
 }
 
 function configureGitHubActionsSettings {
-export SCRATCH_DISK=$(mktemp -d)
-export TESTS_FOLDER="`dirname ${SCRIPT_DIR}`/tests"
+  export SCRATCH_DISK=$(mktemp -d)
+  export TESTS_FOLDER="`dirname ${SCRIPT_DIR}`/tests"
 }
 
 function configureDefaultSettings {
