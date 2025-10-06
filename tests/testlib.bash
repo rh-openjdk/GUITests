@@ -726,6 +726,9 @@ function installEclipse_archive() {
     else
       tar -xf "$archive"
     fi
+    # disable launching of browser with donate page, see:
+    # https://www.eclipse.org/forums/index.php/t/1104324/
+    echo "-Dorg.eclipse.oomph.setup.donate=false" >> "$Eclipse_DIR"/eclipse.ini
   fi
 }
 
