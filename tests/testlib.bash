@@ -98,7 +98,7 @@ function setup() {
   if [ ! "x$OTOOL_OS_NAME" = "xwin" ] ; then
     if [ "x$DISPLAY" == "x" ] ; then
       installVnc
-      futureVnc=":954"
+      futureVnc=":9"
       if ps -aux | grep -v -e grep | grep -e "$futureVnc" ; then
         echo "special vncserver/vncsession seems to be running"
         $LOCAL_VNC -kill $futureVnc
@@ -274,7 +274,7 @@ function resolveBg() {
 }
 
 function saveVncServerLog() {
-  cp "$HOME"/.vnc/*954.log "$REPORT_DIR"/vncserver || true
+  cp "$HOME"/.vnc/*9.log "$REPORT_DIR"/vncserver || true
 }
 
 function compareImagesSilently() {
