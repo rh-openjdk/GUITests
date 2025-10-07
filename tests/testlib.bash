@@ -148,8 +148,8 @@ function dednfyum() {
   # thus removing also the,
   # and restoring alternatives as in install rpms
   if which dnf ; then
-    sudo  dnf history info 0 | grep "${1}"
-    sudo  dnf history undo 0 -y --skip-broken
+    sudo  dnf history info last | grep "${1}"
+    sudo  dnf history undo last -y
     sudo  dnf remove -y "$@" || true # to double check the evil...
   elif which yum ; then
     # shellcheck disable=SC2155
