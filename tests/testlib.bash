@@ -99,7 +99,7 @@ function setup() {
     if [ "x$DISPLAY" == "x" ] ; then
       installVnc
       futureVnc=":9"
-      if ps -aux | grep -v -e grep | grep -e "$futureVnc" ; then
+      if ps -aux | grep -v -e grep | grep -e "vnc.*$futureVnc" ; then
         echo "special vncserver/vncsession seems to be running"
         $LOCAL_VNC -kill $futureVnc
       fi
