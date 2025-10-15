@@ -661,6 +661,9 @@ NETBEANS_VERSION="12.3"
 if [ $OTOOL_JDK_VERSION -gt 11 ]  ; then
   NETBEANS_VERSION=18    
 fi
+if [ $OTOOL_JDK_VERSION -ge 25 ]  ; then
+  NETBEANS_VERSION=27
+fi
 function installNetBeans_archive() {
   local archive="netbeans-$NETBEANS_VERSION-bin.zip"
   # we will need to cache this 400mb installer
