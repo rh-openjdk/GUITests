@@ -299,6 +299,13 @@ function compareImagesSilently() {
   echo $diff
 }
 
+function configureGtkToX11() {
+    # on wayland, some windows want to start as wayland ones,
+    # e.g. eclipse (which uses swt), jmc
+    # we need windows to be x11 due to use of vnc and import
+    # this sets gtk backend to x11
+    export GDK_BACKEND=x11
+}
 
 ITW_17=icedtea-web-1.7.2
 ITW_DIR=icedtea-web-image
@@ -550,6 +557,7 @@ function installJMC_archive() {
 function runJmcFromDir() {
     cleanUpJavaToolOptions
     beforeBg jmcFromDir
+    configureGtkToX11
     bgWithLog $JMC_DIR/bin/jmc  -vm  "$JAVA_DIR"/bin/java
     resolveBg "$PID" jmcFromDir
 }
@@ -599,6 +607,7 @@ function installJMC_bundled() {
 
 function runJmcOnPath() {
     beforeBg jmcOnPath
+    configureGtkToX11
     # shellcheck disable=SC2166
     if [ "x$OTOOL_OS_NAME" = "xel" -a "x$OTOOL_OS_VERSION" = "x7" ] ; then
       bgWithLog scl enable rh-jmc -- jmc -vm "$JAVA_DIR"/bin/java
@@ -741,6 +750,7 @@ function runEclipse_archive() {
    local suffix=""
   fi
   beforeBg eclipse
+  configureGtkToX11
   # suffix-less should work also on windows
   bgWithLog $Eclipse_DIR/eclipse"$suffix" -vm "$JAVA_DIR"/bin/java  -data "$ECLIPSE_LOGS"
   resolveBg "$PID" eclipse
